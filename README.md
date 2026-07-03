@@ -55,9 +55,7 @@ The dashboard displays:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/service-monitor-dashboard.git
-
-cd service-monitor-dashboard
+git clone https://github.com/rynave/ckeckping
 ```
 
 Install dependencies:
