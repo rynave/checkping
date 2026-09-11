@@ -9,13 +9,11 @@ from urllib3.util.retry import Retry
 
 app = Flask(__name__)
 
-# ---------- تنظیمات ----------
-MAX_HISTORY = 60          # ۶۰ دقیقه
-HTTP_TIMEOUT = 2          # ثانیه
+MAX_HISTORY = 60
+HTTP_TIMEOUT = 2
 MAX_WORKERS = 10
 # -----------------------------
 
-# سرویس‌های داخلی (ایرانی)
 INTERNAL_HOSTS = [
     {"name": "آپارات", "host": "https://www.aparat.com"},
     {"name": "دیجی کالا", "host": "https://www.digikala.com"},
@@ -26,7 +24,7 @@ INTERNAL_HOSTS = [
     {"name": "ایرنیک", "host": "https://new.nic.ir"}
 ]
 
-# سرویس‌های خارجی
+
 EXTERNAL_HOSTS = [
     {"name": "Amazon", "host": "https://www.amazon.com"},
     {"name": "App Store", "host": "https://apps.apple.com"},
@@ -65,7 +63,7 @@ GOOGLE_HOSTS = [
 ]
 ALL_HOSTS = INTERNAL_HOSTS + EXTERNAL_HOSTS + GOOGLE_HOSTS
 
-# هدرهای مرورگر واقعی
+
 BROWSER_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -379,7 +377,7 @@ HTML_TEMPLATE = """
             color: #475569;
         }
 
-        /* ----- جدول سرویس‌ها (کارتی) ----- */
+        
         .services-table-container {
             background: white;
             border-radius: 28px;
@@ -540,7 +538,7 @@ HTML_TEMPLATE = """
             width: 60%;
         }
 
-        /* انیمیشن به‌روزرسانی ردیف */
+        
         .row-updating {
             animation: row-flash 1s ease-out;
         }
@@ -550,7 +548,7 @@ HTML_TEMPLATE = """
             100% { background: transparent; }
         }
 
-        /* فوتر */
+        
         .footer {
             margin-top: 40px;
             text-align: center;
@@ -558,7 +556,7 @@ HTML_TEMPLATE = """
             font-size: 0.85rem;
         }
 
-        /* ----- انیمیشن‌ها ----- */
+        
         @keyframes pulse-green {
             0% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
@@ -583,7 +581,7 @@ HTML_TEMPLATE = """
             }
         }
 
-        /* تعریف نهایی و بدون تکرار */
+        
             .status-indicator {
             width: 12px;
             height: 12px;
@@ -606,7 +604,7 @@ HTML_TEMPLATE = """
         .services-table tbody tr:nth-child(3) { animation-delay: 0.09s; }
         .services-table tbody tr:nth-child(4) { animation-delay: 0.12s; }
         .services-table tbody tr:nth-child(5) { animation-delay: 0.15s; }
-        /* ادامه به تعداد ردیف‌ها */
+        
 
         @keyframes fadeInRow {
             from {
@@ -895,15 +893,15 @@ HTML_TEMPLATE = """
             const uptimePercent = totalValid > 0 ? Math.round((validCount / totalValid) * 100) : 0;
             const uptimeSpan = row.querySelector('.uptime-badge');
             uptimeSpan.textContent = uptimePercent + '%';
-            // رنگ پس‌زمینه
+            
             if (uptimePercent >= 95) uptimeSpan.style.background = '#d1fae5';
             else if (uptimePercent >= 80) uptimeSpan.style.background = '#fef3c7';
             else uptimeSpan.style.background = '#fee2e2';
 
-            // زمان بررسی
+            
             row.querySelector('.time-cell').textContent = current.time || '—';
 
-            // نمودار اسپارک‌لاین
+            
             const spark = row.querySelector('.sparkline');
             spark.innerHTML = '';
             for (let i = 0; i < history.length; i++) {
@@ -913,7 +911,7 @@ HTML_TEMPLATE = """
                 else if (history[i] === 0) bar.classList.add('down');
                 spark.appendChild(bar);
             }
-            // پر کردن جای خالی
+            
             for (let i = history.length; i < MAX_HISTORY; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'spark-bar';
@@ -922,7 +920,7 @@ HTML_TEMPLATE = """
         });
     }
 
-    // محاسبه و نمایش درصد گروه‌ها
+
     function updateGroupStats() {
         const groups = [
             { tableId: 'internal-table', progressId: 'internal-progress-fill', percentId: 'internal-group-percent', statId: 'internal-uptime-stat' },
@@ -988,13 +986,11 @@ HTML_TEMPLATE = """
         }
     }
 
-    // بارگذاری اولیه
+    
     fetchStatus(false);
 
-    // به‌روزرسانی خودکار هر ۶۰ ثانیه
     setInterval(() => fetchStatus(false), 60000);
 
-    // دکمه رفرش دستی
     refreshBtn.addEventListener('click', () => fetchStatus(true));
 </script>
 </body>
