@@ -177,16 +177,6 @@ Returns JSON containing the current status and monitoring history for all config
 
 ---
 
-## Screenshots
-
-Add your screenshots here.
-
-```
-screenshots/dashboard.png
-```
-
----
-
 ## Future Improvements
 
 - Email notifications
